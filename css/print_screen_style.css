@@ -46,6 +46,10 @@ button,
   text-decoration: none;
 }
 
+.icon-yellow {
+        margin-right: 8px; /* Adds space between icon and text */
+    }
+
 .preview-primary {
   background-color: #1e7f3b;
   padding: 12px 20px;
