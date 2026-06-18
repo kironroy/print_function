@@ -38,6 +38,20 @@
             text-decoration: none;
         }
 
+        .preview-primary {
+            background-color: #1E7F3B;
+            padding: 12px 20px;
+            font-size: 18px;
+            border: 2px solid #155a2a;
+            color: #ffffff;
+            cursor: pointer;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
         button:hover,
         .preview-btn:hover {
             background: #004a9c;
@@ -149,6 +163,7 @@
             font-weight: bold;
             font-size: 1.5rem;
             background-color: #1E7F3B;
+            border: 2px solid #155a2a;
             color: #fff;
         }
 
@@ -161,7 +176,7 @@
 <body>
 
     <div class="top-bar">
-        <button aria-label="Print selected jobs" onclick="alert('Printing successful ✅')">
+        <button aria-label="Print selected jobs" onclick="alert('Print successful ✅')">
             <span class="icon">🖨️</span> Print
         </button>
 
@@ -177,7 +192,7 @@
             <span class="icon">🔁</span> Reprint Jobs
         </button>
 
-        <a href="preview.html" class="preview-btn" aria-label="Preview">
+        <a href="preview.html" class="preview-primary" aria-label="Preview">
             <span class="icon">🔍</span> Preview
         </a>
     </div>
