@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Print Jobs</title>
+
+<style>
+    body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                     Roboto, Helvetica, Arial, sans-serif;
+        background: #ffffff;
+        margin: 20px;
+        color: #000;
+        font-size: 18px;
+    }
+
+    /* Top button bar */
+    .top-bar {
+        display: flex;
+        justify-content: flex-start;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    button, .preview-btn {
+        padding: 12px 20px;
+        font-size: 18px;
+        border: 2px solid #003a80;
+        background: #005fcc;
+        color: #ffffff;
+        cursor: pointer;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    button:hover, .preview-btn:hover {
+        background: #004a9c;
+    }
+
+    button:focus, .preview-btn:focus {
+        outline: 4px solid #ffbf47;
+    }
+
+    /* Icon spacing */
+    .icon {
+        margin-right: 8px;
+        font-weight: bold;
+    }
+
+    /* Table styling */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th {
+        background: #222;
+        color: #fff;
+        padding: 12px;
+        text-align: left;
+        font-size: 20px;
+    }
+
+    td {
+        padding: 12px;
+        border-bottom: 2px solid #000;
+        transition: background-color 0.2s ease, color 0.2s ease; /* Smooth color transition */
+    }
+
+    /* High‑contrast alternating rows */
+    tr:nth-child(even) {
+        background: #f2f2f2;
+    }
+
+    tr:nth-child(odd) {
+        background: #ffffff;
+    }
+
+    /* Multi-color cell styling */
+    .multi-color {
+        background: linear-gradient(90deg, #ffb3ba, #ffdfba, #ffffba, #baffc9, #bae1ff);
+        font-weight: bold;
+        color: #000;
+    }
+
+    /* Black and White cell styling */
+    .black-and-white {
+        background: #222;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    /* Checkbox sizing */
+    input[type="checkbox"] {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        accent-color: #005fcc; /* Changes the checkmark box color */
+    }
+
+    /* MAGIC HIGHLIGHT RULE: 
+      If a row has a checked checkbox, make all its td elements blue with white text.
+      The !important tags ensure it overrides the alternating row colors and the multi/B&W classes.
+    */
+    tr:has(input[type="checkbox"]:checked) td {
+        background: #005fcc !important;
+        color: #fff !important;
+    }
+
+    /* Divider Line */
+    hr.divider {
+        border: none;
+        border-top: 2px solid #222;
+        margin: 40px 0 20px 0;
+    }
+
+    /* Totals styling */
+    .totals-container {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    /* DONE button — ADA green */
+    .done-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .done-btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 12px 24px;
+        border-radius: 12px;
+        text-decoration: none;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1.5rem;
+        background-color: #1E7F3B;
+        color: #fff;
+    }
+
+    .done-btn:hover {
+        background: #1a6e1a;
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="top-bar">
+    <button aria-label="Print selected jobs">
+        <span class="icon">🖨️</span> Print
+    </button>
+
+    <button aria-label="Delete selected jobs">
+        <span class="icon">🗑️</span> Delete
+    </button>
+
+    <button aria-label="Deselect all jobs">
+        <span class="icon">✖️</span> Deselect Jobs
+    </button>
+
+    <button aria-label="Reprint selected jobs">
+        <span class="icon">🔁</span> Reprint Jobs
+    </button>
+
+    <a href="preview.html" class="preview-btn" aria-label="Preview">
+        <span class="icon">🔍</span> Preview
+    </a>
+</div>
+
+<table aria-label="List of print jobs">
+
+    <tr>
+        <th>Job #</th>
+        <th>Station ID</th>
+        <th>User ID</th>
+        <th>Color/Black & White</th>
+        <th>Submitted</th>
+        <th>Select</th> </tr>
+
+    <tr>
+        <td>1023</td>
+        <td>ST-04</td>
+        <td>4775</td>
+        <td class="multi-color">Color: 5</td>
+        <td>$1.25</td>
+        <td><input type="checkbox" aria-label="Select Job 1023"></td>
+    </tr>
+
+    <tr>
+        <td>1024</td>
+        <td>ST-02</td>
+        <td>4775</td>
+        <td class="black-and-white">B&W: 12</td>
+        <td>$3.00</td>
+        <td><input type="checkbox" aria-label="Select Job 1024"></td>
+    </tr>
+
+    <tr>
+        <td>1025</td>
+        <td>ST-01</td>
+        <td>4775</td>
+        <td class="black-and-white">B&W: 8</td>
+        <td>$2.00</td>
+        <td><input type="checkbox" aria-label="Select Job 1025"></td>
+    </tr>
+
+</table>
+
+<hr class="divider">
+
+<div class="totals-container">
+    <span>Total Pages: 25</span>
+    <span>Total Price: $6.25</span>
+</div>
+
+<div class="done-container">
+    <a href="index.html" class="done-btn" aria-label="Finish and exit">✔ Done</a>
+</div>
+
+</body>
+</html>

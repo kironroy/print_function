@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Self Service Station</title>
+
+  <!-- Print icon (Font Awesome CDN) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      background: #f5f5f5;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Helvetica, Arial, sans-serif;
+      color: #222;
+    }
+
+    /* H1 at top with spacing */
+    h1 {
+      font-size: 72px;
+      text-align: center;
+      font-weight: 800;
+      color: #222; /* Higher contrast */
+      padding-top: 40px;
+      margin: 0 0 40px 0;
+    }
+
+    /* Center container for the button */
+    .center-area {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .release-button {
+      padding: 48px 96px;
+      font-size: 56px;
+      color: #ffffff;
+      background-color: #005fcc; /* Higher contrast blue */
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      border-radius: 32px;
+    }
+
+    .release-button:hover,
+    .release-button:focus {
+      background-color: #004fa8; /* WCAG AA hover contrast */
+      box-shadow: 0 12px 32px rgba(0,0,0,0.30);
+      outline: 4px solid #ffbf47; /* High‑visibility focus ring */
+      outline-offset: 6px;
+    }
+
+    .release-button i {
+      font-size: 56px;
+    }
+
+a {
+  text-decoration: none;
+}
+
+  </style>
+</head>
+<body>
+
+  <h1 id="page-title">Self Service Station</h1>
+
+<div class="center-area">
+  <a href="print_screen.html" class="release-button">
+    <i class="fa-solid fa-print" aria-hidden="true"></i>
+    Click to Release Print
+  </a>
+</div>
+
+
+</body>
+</html>
