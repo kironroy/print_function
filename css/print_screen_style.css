@@ -90,13 +90,15 @@ td {
   /* Smooth color transition */
 }
 
-/* High‑contrast alternating rows */
+/* Deep Navy and White High Contrast */
 tr:nth-child(even) {
-  background: #f2f2f2;
+  background-color: #ffffff;
+  color: #000000;
 }
 
 tr:nth-child(odd) {
-  background: #ffffff;
+  background-color: #002855; /* Dark Navy Blue */
+  color: #ffffff;           /* White text for contrast */
 }
 
 /* Multi-color cell styling */
@@ -115,7 +117,7 @@ tr:nth-child(odd) {
 
 /* Black and White cell styling */
 .black-and-white {
-  background: linear-gradient(to bottom, #000, #fff);
+  background: linear-gradient(90deg, #000, #555555);
   color: #fff;
   font-weight: bold;
 }
