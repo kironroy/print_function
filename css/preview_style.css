@@ -3,7 +3,7 @@
        Simulates a PDF viewer or print preview screen
     ------------------------------------------------------------- */
     body {
-        background-color: #525659; /* Standard PDF viewer gray */
+        background-color: #979797; /* Standard PDF viewer gray */
         margin: 0;
         padding: 40px 20px;
         display: flex;
