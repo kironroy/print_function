@@ -1,0 +1,88 @@
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  background-color: #eeeeee;
+  margin: 0;
+  padding: 0;
+  font-size: 1.25rem; /* Makes everything slightly larger */
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 72px;
+}
+.center-area {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically if a height is set */
+  margin-top: 40px;
+}
+
+/* Basic accessible styling */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.info-text {
+  font-size: 0.85em;
+  color: #222;
+  display: block;
+  margin-top: 4px;
+  background-color: #ffc000;
+  padding: 20px;
+}
+
+ul {
+  background-color: #ffc000;
+  padding: 20px;
+  font-weight: bold;
+  padding-left: 50px;
+  line-height: 1.8;
+}
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  box-sizing: border-box;
+}
+
+.help-text {
+  font-size: 0.85em;
+  color: #555;
+  display: block;
+  margin-top: 4px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Centers the button horizontally */
+  align-items: center; /* Centers vertically (if the container has height) */
+  margin-top: 30px; /* Adds space above the button */
+  width: 100%; /* Ensures it spans the width of the page */
+}
+
+.submit-btn {
+  padding: 15px 30px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 12px;
+  /* Add your specific colors here */
+  border: 2px solid #003a80;
+  background: #005fcc;
+  color: #ffffff;
+}

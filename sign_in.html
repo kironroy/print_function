@@ -4,74 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Self Service Station - Print Access</title>
-    <link rel="stylesheet" href="css/index_style.css">
-    <style>
-        /* Basic accessible styling */
-        .form-group {
-            margin-bottom: 20px;
-        }
+    <link rel="stylesheet" href="css/sign_in_style.css">
 
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-top: 4px;
-            box-sizing: border-box;
-        }
-
-        .help-text {
-            font-size: 0.85em;
-            color: #555;
-            display: block;
-            margin-top: 4px;
-        }
-
-        button {
-            padding: 12px 20px;
-            font-size: 18px;
-            border: 2px solid #003a80;
-            background: #005fcc;
-            color: #ffffff;
-            cursor: pointer;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            font-weight: bold;
-            text-decoration: none;
-        }
-    </style>
 </head>
 
 <body>
 
-  
+    <div class="center-area"></div>
 
     <main>
         <h1>Print Access</h1>
-        <p>Please enter your information below. Fields marked with an asterisk (<span aria-hidden="true">*</span>) are
-            required.</p>
+        <p>Please enter your information below.
+        <ul>
+            <li>If printed from the computer lab. Type in your Library Card Number</li>
+            or
+            <li>If printed from the mobile app. Type in your Email Address</li>
+        </ul>
+        </p>
 
         <form action="/submit-print-request" method="POST">
 
             <div class="form-group">
-                <label for="library-card">Library Card Number <span aria-hidden="true">*</span></label>
+                <label for="library-card">Library Card Number <span aria-hidden="true"></span></label>
                 <input type="text" id="library-card" name="library-card" required aria-required="true"
                     aria-describedby="card-help">
                 <span id="card-help" class="help-text">Enter the number from your physical library card.</span>
             </div>
 
             <div class="form-group">
-                <label for="email">Email Address <span aria-hidden="true">*</span></label>
+                <label for="email">Email Address <span aria-hidden="true"></span></label>
                 <input type="email" id="email" name="email" required aria-required="true" aria-describedby="email-help">
                 <span id="email-help" class="help-text">Enter the email address you use for the mobile app.</span>
             </div>
-
-            <button type="submit">Submit Request</button>
+            <div class="button-container">
+                <a href="print_screen.html" class="submit-btn">Submit Request</a>
+            </div>
         </form>
     </main>
 
