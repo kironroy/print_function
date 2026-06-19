@@ -4,6 +4,19 @@ body {
   margin: 0;
 }
 
+.banner {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px; /* Adds space between the banner and the h1 */
+}
+
+.banner-img {
+  max-width: 100%; /* Ensures the image doesn't exceed screen width */
+  height: auto;    /* Maintains aspect ratio */
+  display: block;  /* Removes extra space under the image */
+  margin: 0 auto;  /* Centers the image horizontally */
+}
+
 body {
   display: flex;
   flex-direction: column;
