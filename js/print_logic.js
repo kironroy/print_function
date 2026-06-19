@@ -13,3 +13,23 @@ window.handlePrint = function () {
     alert('Please select document(s) to print ⚠️');
   }
 };
+
+function startCountdown(duration) {
+  let timer = duration;
+  const display = document.querySelector('#time');
+
+  const interval = setInterval(function () {
+    display.textContent = timer;
+
+    if (--timer < 0) {
+      clearInterval(interval);
+      // Optional: Redirect to index.html when time hits 0
+      window.location.href = 'index.html';
+    }
+  }, 1000);
+}
+
+// Start the countdown with 60 seconds
+window.onload = function () {
+  startCountdown(60);
+};

@@ -19,8 +19,28 @@ h1 {
   text-align: center;
   font-weight: 800;
   color: #222; /* Higher contrast */
-  padding-bottom: 40px;
+  padding-bottom: 10px;
   margin: 0 0 40px 0;
+}
+
+#countdown-timer {
+    background-color: #FFC000;
+    color: #222;
+    padding: 20px;
+    width: fit-content;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    font-size: 22px;
+    /* Centering logic */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* Optional: Ensures the number stands out specifically */
+#time {
+  font-weight: 800;
 }
 
 /* Top button bar */
@@ -47,8 +67,8 @@ button,
 }
 
 .font-awesome-icons {
-        margin-right: 8px; /* Adds space between icon and text */
-    }
+  margin-right: 8px; /* Adds space between icon and text */
+}
 
 .preview-primary {
   background-color: #1e7f3b;
@@ -111,7 +131,7 @@ tr:nth-child(even) {
 
 tr:nth-child(odd) {
   background-color: #002855; /* Dark Navy Blue */
-  color: #ffffff;           /* White text for contrast */
+  color: #ffffff; /* White text for contrast */
 }
 
 /* Multi-color cell styling */
