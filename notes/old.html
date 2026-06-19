@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Image Gallery</title>
+    <style>
+        /* Container setup */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            /* Allows wrapping on smaller screens */
+            gap: 10px;
+            /* Adds space between images */
+            padding: 10px;
+        }
+
+        /* Image styling */
+        .gallery img {
+            flex: 1 1 300px;
+            /* Grow, Shrink, Basis: ensures equal flex and responsive sizing */
+            width: 100%;
+            /* Ensures images don't overflow */
+            height: auto;
+            /* Maintains aspect ratio */
+            object-fit: cover;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="gallery">
+        <img src="1.webp" alt="Description of image 1">
+        <img src="2.webp" alt="Description of image 2">
+        <img src="3.webp" alt="Description of image 3">
+    </div>
+
+</body>
+
+</html>
