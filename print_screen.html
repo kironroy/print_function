@@ -5,32 +5,32 @@
     <meta charset="UTF-8">
     <title>Print Jobs</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="css/print_screen_style.css">
+    <link rel="stylesheet" href="css/print_screen_style.css">
 </head>
 
 <body>
-<h1>Print Jobs</h1>
-<div class="top-bar">
-    <button aria-label="Print selected jobs" onclick="alert('Print successful ✅')">
-        <i class="fa-solid fa-print icon-yellow"></i> Print
-    </button>
+    <h1>Print Jobs</h1>
+    <div class="top-bar">
+        <button aria-label="Print selected jobs" onclick="handlePrint()">
+            <i class="fa-solid fa-print font-awesome-icons"></i> Print
+        </button>
 
-    <button aria-label="Delete selected jobs" onclick="alert('Jobs deleted successfully ❌')">
-        <i class="fa-solid fa-trash icon-yellow"></i> Delete
-    </button>
+        <button aria-label="Delete selected jobs" onclick="alert('Jobs deleted successfully ❌')">
+            <i class="fa-solid fa-trash font-awesome-icons"></i> Delete
+        </button>
 
-    <button aria-label="Deselect all jobs" onclick="alert('All jobs deselected ➖')">
-        <i class="fa-solid fa-xmark icon-yellow"></i> Deselect Jobs
-    </button>
+        <button aria-label="Deselect all jobs" onclick="alert('All jobs deselected ➖')">
+            <i class="fa-solid fa-xmark font-awesome-icons"></i> Deselect Jobs
+        </button>
 
-    <button aria-label="Reprint selected jobs" onclick="alert('Reprint successful ✅')">
-        <i class="fa-solid fa-rotate-right icon-yellow"></i> Reprint Jobs
-    </button>
+        <button aria-label="Reprint selected jobs" onclick="alert('Reprint successful ✅')">
+            <i class="fa-solid fa-rotate-right font-awesome-icons"></i> Reprint Jobs
+        </button>
 
-    <a href="preview.html" class="preview-primary" aria-label="Preview">
-        <i class="fa-solid fa-magnifying-glass icon-yellow"></i> Preview
-    </a>
-</div>
+        <a href="preview.html" class="preview-primary" aria-label="Preview">
+            <i class="fa-solid fa-magnifying-glass font-awesome-icons"></i> Preview
+        </a>
+    </div>
 
     <table aria-label="List of print jobs">
 
@@ -80,11 +80,11 @@
     </div>
 
     <div class="done-container">
-<a href="index.html" class="done-btn" aria-label="Finish and exit">
-    <i class="fa-solid fa-circle-check icon-yellow"></i> Done
-</a>
+        <a href="index.html" class="done-btn" aria-label="Finish and exit">
+            <i class="fa-solid fa-circle-check font-awesome-icons"></i> Done
+        </a>
     </div>
-
+    <script src="js/print_logic.js"></script>
 </body>
 
 </html>
