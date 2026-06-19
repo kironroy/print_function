@@ -75,14 +75,24 @@ input {
   width: 100%; /* Ensures it spans the width of the page */
 }
 
-.submit-btn {
-  padding: 15px 30px;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 12px;
-  /* Add your specific colors here */
-  border: 2px solid #003a80;
-  background: #005fcc;
-  color: #ffffff;
+.submit-container {
+  display: flex;
+  justify-content: center;
 }
+
+.submit-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.5rem;
+  background-color: #1e7f3b;
+  border: 2px solid #155a2a;
+  color: #fff;
+   display: flex;
+  justify-content: center;
+}
+

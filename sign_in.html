@@ -4,8 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Self Service Station - Print Access</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/sign_in_style.css">
-
+    <style>
+        /* Basic styling to handle the disabled state of the button */
+        .submit-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,34 +22,35 @@
 
     <main>
         <h1>Print Access</h1>
-        <p>Please enter your information below.
+        <p>Please enter your information below:</p>
         <ul>
-            <li>If printed from the computer lab. Type in your Library Card Number</li>
-            or
-            <li>If printed from the mobile app. Type in your Email Address</li>
+            <li>If printed from the computer lab, type in your <strong>Library Card Number</strong>.</li>
+            <li>If printed from the mobile app, type in your <strong>Email Address</strong>.</li>
         </ul>
-        </p>
 
-        <form action="/submit-print-request" method="POST">
+        <form id="printForm" action="/submit-print-request" method="POST">
 
             <div class="form-group">
-                <label for="library-card">Library Card Number <span aria-hidden="true"></span></label>
-                <input type="text" id="library-card" name="library-card" required aria-required="true"
-                    aria-describedby="card-help">
+                <label for="library-card">Library Card Number</label>
+                <input type="text" id="library-card" name="library-card" aria-describedby="card-help">
                 <span id="card-help" class="help-text">Enter the number from your physical library card.</span>
             </div>
 
             <div class="form-group">
-                <label for="email">Email Address <span aria-hidden="true"></span></label>
-                <input type="email" id="email" name="email" required aria-required="true" aria-describedby="email-help">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" aria-describedby="email-help">
                 <span id="email-help" class="help-text">Enter the email address you use for the mobile app.</span>
             </div>
+
             <div class="button-container">
-                <a href="print_screen.html" class="submit-btn">Submit Request</a>
+                <button type="submit" id="submit-btn" class="submit-btn" disabled>
+                    <i class="fa-solid fa-circle-check">&nbsp;</i> Submit Request
+                </button>
             </div>
         </form>
     </main>
 
+<script src="js/signInLogic.js"></script>
 </body>
 
 </html>
