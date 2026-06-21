@@ -38,26 +38,24 @@ label {
 }
 
 .info-text {
-  font-size: 0.85em;
-  color: #222;
-  display: block;
-  margin-top: 4px;
   background-color: #ffc000;
-  padding: 20px;
+  padding: 2px 4px;
+  font-weight: bold;
 }
 
 ul {
-  background-color: #ffc000;
   padding: 20px;
-  font-weight: bold;
   padding-left: 50px;
   line-height: 1.8;
 }
 input {
   width: 100%;
-  padding: 8px;
+  padding: 12px;
   margin-top: 4px;
   box-sizing: border-box;
+  font-size: 1.1rem;
+  border: 2px solid #2C3E50;
+  border-radius: 9px;
 }
 
 .help-text {

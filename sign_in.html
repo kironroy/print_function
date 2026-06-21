@@ -18,39 +18,41 @@
 
 <body>
 
-    <div class="center-area"></div>
+    <div class="center-area">
 
-    <main>
-        <h1>Print Access</h1>
-        <p>Please enter your information below:</p>
-        <ul>
-            <li>If printed from the computer lab, type in your <strong>Library Card Number</strong>.</li>
-            <li>If printed from the mobile app, type in your <strong>Email Address</strong>.</li>
-        </ul>
+        <main>
+            <h1>Print Access</h1>
+            <p>Please enter your information below:</p>
+            <ul>
+                <li>If printed from the computer lab, type in your <span class="info-text">Library Card Number</span>.</li>
+                <li>If printed from the mobile app, type in your <span class="info-text">Email Address</span>.</li>
+            </ul>
 
-        <form id="printForm" action="/submit-print-request" method="POST">
+            <form id="printForm" action="/submit-print-request" method="POST">
 
-            <div class="form-group">
-                <label for="library-card">Library Card Number</label>
-                <input type="text" id="library-card" name="library-card" aria-describedby="card-help">
-                <span id="card-help" class="help-text">Enter the number from your physical library card.</span>
-            </div>
+                <div class="form-group">
+                    <label for="library-card">Library Card Number</label>
+                    <span id="library-help" class="help-text">Please enter the digits found on the back of your
+                        card.</span>
+                    <input type="text" id="library-card" name="library-card" inputmode="numeric" pattern="[0-9]*"
+                        placeholder="e.g., 123456789" aria-describedby="library-help">
+                </div>
 
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" aria-describedby="email-help">
-                <span id="email-help" class="help-text">Enter the email address you use for the mobile app.</span>
-            </div>
-
-            <div class="button-container">
-                <button type="submit" id="submit-btn" class="submit-btn" disabled>
-                    <i class="fa-solid fa-circle-check">&nbsp;</i> Submit Request
-                </button>
-            </div>
-        </form>
-    </main>
-
-<script src="js/signInLogic.js"></script>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <span id="email-help" class="help-text">We'll use this to send your receipts.</span>
+                    <input type="email" id="email" name="email" placeholder="example@email.com"
+                        aria-describedby="email-help">
+                </div>
+                <div class="button-container">
+                    <button type="submit" id="submit-btn" class="submit-btn" disabled>
+                        <i class="fa-solid fa-circle-check">&nbsp;</i> Submit Request
+                    </button>
+                </div>
+            </form>
+        </main>
+    </div>
+    <script src="js/signInLogic.js"></script>
 </body>
 
 </html>
