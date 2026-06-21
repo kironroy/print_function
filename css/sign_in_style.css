@@ -96,3 +96,9 @@ input {
   justify-content: center;
 }
 
+.submit-btn:hover {
+  background-color: #155729; /* WCAG AA hover contrast */
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  outline: 4px solid #ffbf47; /* High‑visibility focus ring */
+  outline-offset: 6px;
+}

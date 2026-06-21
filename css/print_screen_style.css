@@ -86,7 +86,10 @@ button,
 
 button:hover,
 .preview-btn:hover {
-  background: #004a9c;
+  background-color: #00438f; /* WCAG AA hover contrast */
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  outline: 4px solid #ffbf47; /* High‑visibility focus ring */
+  outline-offset: 6px;
 }
 
 button:focus,
@@ -209,7 +212,10 @@ hr.divider {
   border: 2px solid #155a2a;
   color: #fff;
 }
-
+.preview-primary:hover,
 .done-btn:hover {
-  background: #1a6e1a;
+  background-color: #155729; /* WCAG AA hover contrast */
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  outline: 4px solid #ffbf47; /* High‑visibility focus ring */
+  outline-offset: 6px;
 }
