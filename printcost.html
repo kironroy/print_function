@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copy Cost Calculator</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: #222;
+    background-color: #f7f7f8;
+    display: flex;
+    justify-content: center;
+    padding: 24px 16px;
+    min-height: 100vh;
+  }
+
+  .calculator-card {
+    width: 100%;
+    max-width: 400px;
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    align-self: flex-start;
+  }
+
+  h2 {
+    /* Increased header size */
+    font-size: 1.7rem;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: 24px;
+  }
+
+  label {
+    display: block;
+    /* Increased label size for better readability */
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  input[type="number"] {
+    width: 100%;
+    /* Increased padding and input text size */
+    padding: 16px;
+    font-size: 1.2rem;
+    font-family: inherit;
+    color: #222;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+  }
+
+  input[type="number"]:focus {
+    border-color: #0066cc;
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+  }
+
+  .results {
+    margin-top: 28px;
+    padding: 20px;
+    background-color: #f0f4f8;
+    border-radius: 8px;
+  }
+
+  .result-row {
+    display: flex;
+    justify-content: space-between;
+    /* Increased standard result text */
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+  }
+
+  .result-row.total {
+    margin-bottom: 0;
+    padding-top: 14px;
+    border-top: 1px solid #dcdfe4;
+    font-weight: 700;
+    /* Increased grand total size to stand out */
+    font-size: 1.4rem;
+  }
+</style>
+</head>
+
+<body>
+
+  <div class="calculator-card">
+    <h2>Copy Calculator</h2>
+
+    <div class="form-group">
+      <label for="bwSheets">Black & White Copies ($0.15 / sheet)</label>
+      <input type="number" id="bwSheets" min="0" placeholder="0" oninput="renderTotals()">
+    </div>
+
+    <div class="form-group">
+      <label for="colorSheets">Color Copies ($0.30 / sheet)</label>
+      <input type="number" id="colorSheets" min="0" placeholder="0" oninput="renderTotals()">
+    </div>
+
+    <div class="results">
+      <div class="result-row">
+        <span>Black & White:</span>
+        <span id="bwResult">$0.00</span>
+      </div>
+      <div class="result-row">
+        <span>Color:</span>
+        <span id="colorResult">$0.00</span>
+      </div>
+      <div class="result-row total">
+        <span>Grand Total:</span>
+        <span id="totalResult">$0.00</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Function 1: Calculate Black and White copies ($0.15 each)
+    function calculateBW(sheets) {
+      const rate = 0.15;
+      const count = Math.max(0, parseInt(sheets) || 0);
+      return count * rate;
+    }
+
+    // Function 2: Calculate Color copies ($0.30 each)
+    function calculateColor(sheets) {
+      const rate = 0.30;
+      const count = Math.max(0, parseInt(sheets) || 0);
+      return count * rate;
+    }
+
+    // Render output dynamically to HTML
+    function renderTotals() {
+      const bwInput = document.getElementById('bwSheets').value;
+      const colorInput = document.getElementById('colorSheets').value;
+
+      const bwTotal = calculateBW(bwInput);
+      const colorTotal = calculateColor(colorInput);
+      const grandTotal = bwTotal + colorTotal;
+
+      document.getElementById('bwResult').textContent = `$${bwTotal.toFixed(2)}`;
+      document.getElementById('colorResult').textContent = `$${colorTotal.toFixed(2)}`;
+      document.getElementById('totalResult').textContent = `$${grandTotal.toFixed(2)}`;
+    }
+  </script>
+
+</body>
+
+</html>
