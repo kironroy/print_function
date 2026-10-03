@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library Self-Service Print Station</title>
+    <title>Library Print Service (Kiosk & Mobile)</title>
     <style>
         /* CSS RESET & ACCESSIBILITY BASE STYLES */
         :root {
@@ -13,6 +13,7 @@
             --color-blue-hover: #1e40af;
             --color-green-action: #15803d;
             --color-green-hover: #166534;
+            --color-amber: #b45309;
             --color-danger: #b91c1c;
             --color-bg-light: #f8fafc;
             --color-card-bg: #ffffff;
@@ -61,6 +62,38 @@
 
         .skip-link:focus {
             top: 10px;
+        }
+
+        /* MODE SELECTOR BANNER */
+        .mode-bar {
+            background: #e2e8f0;
+            border-bottom: 2px solid var(--color-border);
+            padding: 0.75rem 1rem;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .mode-badge {
+            font-weight: bold;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.95rem;
+        }
+
+        .mode-badge.kiosk {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #bfdbfe;
+        }
+
+        .mode-badge.mobile {
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fde68a;
         }
 
         /* HEADER & PROGRESS STEPPER */
@@ -113,7 +146,7 @@
             flex: 1;
             max-width: 950px;
             width: 100%;
-            margin: 2rem auto;
+            margin: 1.5rem auto;
             padding: 0 1.25rem;
         }
 
@@ -172,6 +205,15 @@
             background-color: var(--color-green-hover);
         }
 
+        .btn-amber {
+            background-color: var(--color-amber);
+            color: white;
+        }
+
+        .btn-amber:hover:not(:disabled) {
+            background-color: #92400e;
+        }
+
         .btn-secondary {
             background-color: #e2e8f0;
             color: var(--color-text-main);
@@ -215,17 +257,18 @@
             color: var(--color-navy);
         }
 
-        input[type="text"] {
+        input[type="text"],
+        input[type="file"] {
             width: 100%;
             height: 60px;
-            font-size: 1.35rem;
+            font-size: 1.25rem;
             padding: 0.75rem 1rem;
             border: 2px solid var(--color-border);
             border-radius: 8px;
             background-color: #f8fafc;
         }
 
-        /* PRINT JOB QUEUE TABLE */
+        /* PRINT JOB QUEUE TABLE / LIST */
         .job-table {
             width: 100%;
             border-collapse: collapse;
@@ -297,7 +340,7 @@
             font-size: 1.2rem;
             font-weight: bold;
             color: var(--color-navy);
-            /* moz-appearance: textfield; */
+            /* -moz-appearance: textfield; */
         }
 
         .input-qty::-webkit-outer-spin-button,
@@ -317,6 +360,40 @@
             font-size: 1.35rem;
             font-weight: bold;
             margin-bottom: 1.75rem;
+        }
+
+        /* PASSCODE DISPLAY BOX FOR MOBILE MODE */
+        .release-pass-box {
+            background-color: #fffbeb;
+            border: 3px solid #fde68a;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .passcode {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: 6px;
+            color: var(--color-navy);
+            margin: 1rem 0;
+            font-family: monospace;
+        }
+
+        .qr-mockup {
+            width: 150px;
+            height: 150px;
+            background: #0f172a;
+            color: white;
+            margin: 1rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border: 4px solid white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
         /* PREVIEW MODAL STYLES */
@@ -378,7 +455,7 @@
         .preview-paper {
             width: 100%;
             max-width: 480px;
-            min-height: 520px;
+            min-height: 480px;
             background: white;
             border: 1px solid #cbd5e1;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
@@ -404,7 +481,7 @@
         }
 
         .preview-skeleton-block {
-            height: 180px;
+            height: 160px;
             background: #f8fafc;
             border: 2px dashed #cbd5e1;
             border-radius: 8px;
@@ -449,15 +526,39 @@
             display: block;
         }
 
+        /* MOBILE RESPONSIVE ADAPTATIONS */
         @media (max-width: 768px) {
             .header-container {
                 flex-direction: column;
                 align-items: flex-start;
             }
 
-            .job-table th:nth-child(3),
-            .job-table td:nth-child(3) {
+            .job-table,
+            .job-table tbody,
+            .job-table tr,
+            .job-table td {
+                display: block;
+                width: 100%;
+            }
+
+            .job-table thead {
                 display: none;
+            }
+
+            .job-table tr {
+                margin-bottom: 1rem;
+                border: 2px solid var(--color-border);
+                border-radius: 8px;
+                padding: 1rem;
+                background: #fff;
+            }
+
+            .job-table td {
+                border-bottom: none;
+                padding: 0.5rem 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
             }
 
             .btn {
@@ -486,14 +587,28 @@
 
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
+    <!-- DUAL MODE SIMULATION SWITCHER FOR DEMO / TESTING -->
+    <div class="mode-bar">
+        <span><strong>App Access Mode:</strong></span>
+        <button type="button" class="btn btn-secondary"
+            style="min-height:36px; padding: 0.25rem 0.75rem; font-size: 0.95rem;" onclick="setMode('kiosk')">
+            🖥️ Computer Lab / Kiosk
+        </button>
+        <button type="button" class="btn btn-secondary"
+            style="min-height:36px; padding: 0.25rem 0.75rem; font-size: 0.95rem;" onclick="setMode('mobile')">
+            📱 Personal Mobile Device
+        </button>
+        <span id="current-mode-badge" class="mode-badge kiosk">Kiosk Terminal Mode</span>
+    </div>
+
     <header>
         <div class="header-container">
             <div class="logo-title">Library Print Station</div>
             <nav aria-label="Printing Process Progress">
                 <ul class="stepper">
-                    <li class="step-pill active" id="pill-step-1" aria-current="step">1. Sign In</li>
-                    <li class="step-pill" id="pill-step-2">2. Select Jobs</li>
-                    <li class="step-pill" id="pill-step-3">3. Print & Finish</li>
+                    <li class="step-pill active" id="pill-step-1" aria-current="step">1. Access</li>
+                    <li class="step-pill" id="pill-step-2">2. Files & Options</li>
+                    <li class="step-pill" id="pill-step-3">3. Confirmation</li>
                 </ul>
             </nav>
         </div>
@@ -504,28 +619,35 @@
         <div id="sr-announcer" aria-live="polite"
             style="position: absolute; width: 1px; height: 1px; overflow: hidden;"></div>
 
-        <!-- STEP 1: SIGN IN VIEW -->
+        <!-- STEP 1: ACCESS VIEW (Adaptive for Mobile vs Kiosk) -->
         <section id="step-1" class="card step-view active-view" aria-labelledby="heading-step-1">
-            <h2 id="heading-step-1" tabindex="-1">Welcome! Sign In to Print</h2>
-            <p class="instruction">Scan your library card barcode or enter your card number below using the keypad or
-                touch screen.</p>
+            <h2 id="heading-step-1" tabindex="-1">Welcome to Library Printing</h2>
+            <p class="instruction" id="step-1-instruction">Scan your library card barcode or enter your card number to
+                view your queue.</p>
 
-            <form id="login-form" onsubmit="event.preventDefault(); goToStep(2);">
-                <div class="form-group">
+            <form id="access-form" onsubmit="event.preventDefault(); goToStep(2);">
+
+                <div class="form-group" id="card-input-group">
                     <label for="card-number">Library Card Number or Guest Pass ID</label>
-                    <input type="text" id="card-number" required placeholder="e.g. 212340056789" autocomplete="off">
+                    <input type="text" id="card-number" placeholder="e.g. 212340056789" autocomplete="off">
+                </div>
+
+                <!-- Mobile Upload Option (Visible only in Mobile Mode) -->
+                <div class="form-group" id="mobile-upload-group" style="display: none;">
+                    <label for="mobile-file">Upload Document from Phone (PDF, Word, Images)</label>
+                    <input type="file" id="mobile-file" accept=".pdf,.doc,.docx,.png,.jpg">
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-block">
-                    Continue to My Print Jobs &rarr;
+                    Continue &rarr;
                 </button>
             </form>
         </section>
 
-        <!-- STEP 2: SELECT PRINT JOBS, COPIES & PREVIEW VIEW -->
+        <!-- STEP 2: SELECT PRINT JOBS & COPIES VIEW -->
         <section id="step-2" class="card step-view" aria-labelledby="heading-step-2">
             <h2 id="heading-step-2" tabindex="-1">Your Print Queue</h2>
-            <p class="instruction">Preview your documents, select files, and choose the number of copies needed.</p>
+            <p class="instruction">Preview your documents, verify copies, and check total costs.</p>
 
             <table class="job-table" aria-label="Available print jobs">
                 <thead>
@@ -611,29 +733,69 @@
 
             <div class="action-row">
                 <button type="button" class="btn btn-secondary" onclick="goToStep(1)">
-                    &larr; Cancel / Exit
+                    &larr; Cancel / Back
                 </button>
-                <button type="button" id="print-btn" class="btn btn-success" onclick="startPrinting()">
+                <!-- Dynamic Action Button based on Kiosk vs Mobile mode -->
+                <button type="button" id="submit-action-btn" class="btn btn-success" onclick="handlePrimarySubmit()">
                     Print Selected Documents
                 </button>
             </div>
         </section>
 
-        <!-- STEP 3: PRINTING & CONFIRMATION VIEW -->
+        <!-- STEP 3: CONFIRMATION / RELEASE INSTRUCTIONS VIEW -->
         <section id="step-3" class="card step-view" aria-labelledby="heading-step-3">
-            <h2 id="heading-step-3" tabindex="-1">Sending Jobs to Printer...</h2>
-            <p class="instruction" id="status-message">Please wait while your files are processed. Retrieve your
-                printouts at the tray below.</p>
 
-            <div class="timer-alert" id="timer-box" role="alert">
-                Automatic security logout in: <span id="countdown-timer">30</span> seconds.
+            <!-- CONTENT FOR KIOSK / COMPUTER LAB MODE -->
+            <div id="kiosk-confirmation" style="display: block;">
+                <h2 id="heading-step-3" tabindex="-1">Sending Jobs to Printer...</h2>
+                <p class="instruction">Please wait while your files process. Retrieve your printed documents from the
+                    printer tray below.</p>
+
+                <div class="timer-alert" id="timer-box" role="alert">
+                    Automatic security logout in: <span id="countdown-timer">30</span> seconds.
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <button type="button" class="btn btn-primary btn-block" onclick="resetApp()">
+                        Finished / Clear Session Now
+                    </button>
+                </div>
             </div>
 
-            <div style="margin-top: 2rem;">
-                <button type="button" class="btn btn-primary btn-block" onclick="resetApp()">
-                    Finished / Clear My Session Now
+            <!-- CONTENT FOR PERSONAL MOBILE MODE -->
+            <div id="mobile-confirmation" style="display: none;">
+                <h2 id="heading-step-3-mobile" tabindex="-1">Print Job Sent to Cloud Queue!</h2>
+                <p class="instruction">To prevent document mix-ups on our 2 library printers, mobile jobs must be
+                    physically released at a station.</p>
+
+                <div class="release-pass-box">
+                    <p style="font-weight: bold; color: var(--color-navy); font-size: 1.2rem;">Your Kiosk Release Code:
+                    </p>
+                    <div class="passcode" id="release-code-display">849-204</div>
+
+                    <div class="qr-mockup">
+                        [ QR CODE ]
+                    </div>
+                    <p style="font-size: 0.95rem; color: var(--color-text-muted);">Scan QR code at the station scanner
+                        or enter code manually.</p>
+                </div>
+
+                <div
+                    style="background-color: #f1f5f9; border-left: 4px solid var(--color-navy); padding: 1rem; margin-bottom: 1.5rem;">
+                    <strong>Next Steps at the Library:</strong>
+                    <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>Walk to Printer Station 1 or Station 2 in the main lobby.</li>
+                        <li>Tap "Release Mobile Job" on the screen.</li>
+                        <li>Enter your code <strong id="code-recap">849-204</strong> or scan your library card to print.
+                        </li>
+                    </ol>
+                </div>
+
+                <button type="button" class="btn btn-amber btn-block" onclick="resetApp()">
+                    Submit Another Document
                 </button>
             </div>
+
         </section>
 
     </main>
@@ -683,9 +845,36 @@
 
     <script>
         let currentStep = 1;
+        let appMode = 'kiosk'; // Default mode: 'kiosk' or 'mobile'
         let timerInterval = null;
         let activePreview = { title: '', totalPages: 1, currentPage: 1 };
         let previousFocusedElement = null;
+
+        /* SET APPLICATION MODE (KIOSK VS MOBILE) */
+        function setMode(mode) {
+            appMode = mode;
+            const badge = document.getElementById('current-mode-badge');
+            const submitBtn = document.getElementById('submit-action-btn');
+            const mobileUpload = document.getElementById('mobile-upload-group');
+            const step1Inst = document.getElementById('step-1-instruction');
+
+            if (mode === 'mobile') {
+                badge.textContent = 'Personal Mobile Mode';
+                badge.className = 'mode-badge mobile';
+                submitBtn.textContent = 'Generate Kiosk Release Code';
+                submitBtn.className = 'btn btn-amber';
+                mobileUpload.style.display = 'block';
+                step1Inst.textContent = 'Upload files directly from your phone and enter your library card or email.';
+            } else {
+                badge.textContent = 'Kiosk Terminal Mode';
+                badge.className = 'mode-badge kiosk';
+                submitBtn.textContent = 'Print Selected Documents';
+                submitBtn.className = 'btn btn-success';
+                mobileUpload.style.display = 'none';
+                step1Inst.textContent = 'Scan your library card barcode or enter your card number to view your queue.';
+            }
+            resetApp();
+        }
 
         /* STEP NAVIGATION WITH ACCESSIBLE FOCUS MANAGEMENT */
         function goToStep(stepNumber) {
@@ -704,19 +893,42 @@
             const targetStep = document.getElementById(`step-${stepNumber}`);
             targetStep.classList.add('active-view');
 
-            const targetHeading = document.getElementById(`heading-step-${stepNumber}`);
-            targetHeading.focus();
+            let headingId = `heading-step-${stepNumber}`;
+            if (stepNumber === 3 && appMode === 'mobile') {
+                headingId = 'heading-step-3-mobile';
+            }
+
+            const targetHeading = document.getElementById(headingId);
+            if (targetHeading) targetHeading.focus();
 
             const announcer = document.getElementById('sr-announcer');
-            announcer.textContent = `Step ${stepNumber} of 3 loaded: ${targetHeading.textContent}`;
+            announcer.textContent = `Step ${stepNumber} of 3 loaded: ${targetHeading ? targetHeading.textContent : ''}`;
 
             currentStep = stepNumber;
+        }
+
+        /* HANDLE SUBMISSION ACCORDING TO DEVICE MODE */
+        function handlePrimarySubmit() {
+            if (appMode === 'kiosk') {
+                document.getElementById('kiosk-confirmation').style.display = 'block';
+                document.getElementById('mobile-confirmation').style.display = 'none';
+                goToStep(3);
+                startKioskTimer();
+            } else {
+                // MOBILE MODE: Generate random 6-digit passcode
+                const randomCode = Math.floor(100000 + Math.random() * 900000).toString().replace(/(\d{3})(\d{3})/, '$1-$2');
+                document.getElementById('release-code-display').textContent = randomCode;
+                document.getElementById('code-recap').textContent = randomCode;
+
+                document.getElementById('kiosk-confirmation').style.display = 'none';
+                document.getElementById('mobile-confirmation').style.display = 'block';
+                goToStep(3);
+            }
         }
 
         /* PRINT PREVIEW MODAL LOGIC */
         function openPreview(docTitle, totalPages) {
             previousFocusedElement = document.activeElement;
-
             activePreview = { title: docTitle, totalPages: totalPages, currentPage: 1 };
 
             document.getElementById('modal-title').textContent = `Preview: ${docTitle}`;
@@ -768,9 +980,7 @@
         }
 
         function handleModalKeyDown(e) {
-            if (e.key === 'Escape') {
-                closePreview();
-            }
+            if (e.key === 'Escape') closePreview();
         }
 
         /* COPY INCREMENT / DECREMENT LOGIC */
@@ -828,21 +1038,20 @@
 
             document.getElementById('total-price-display').textContent = `$${grandTotal.toFixed(2)}`;
 
-            const printBtn = document.getElementById('print-btn');
+            const submitBtn = document.getElementById('submit-action-btn');
             if (!anyChecked) {
-                printBtn.disabled = true;
-                printBtn.style.opacity = '0.5';
-                printBtn.style.cursor = 'not-allowed';
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.5';
+                submitBtn.style.cursor = 'not-allowed';
             } else {
-                printBtn.disabled = false;
-                printBtn.style.opacity = '1';
-                printBtn.style.cursor = 'pointer';
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+                submitBtn.style.cursor = 'pointer';
             }
         }
 
-        /* PRINT SIMULATION & AUTO-LOGOUT TIMER */
-        function startPrinting() {
-            goToStep(3);
+        /* KIOSK AUTO-LOGOUT TIMER */
+        function startKioskTimer() {
             let timeLeft = 30;
             const timerDisplay = document.getElementById('countdown-timer');
 
@@ -858,11 +1067,13 @@
             }, 1000);
         }
 
-        /* RESET SESSION STATE FOR NEXT PATRON */
+        /* RESET SESSION STATE */
         function resetApp() {
             if (timerInterval) clearInterval(timerInterval);
 
             document.getElementById('card-number').value = '';
+            const mobileInput = document.getElementById('mobile-file');
+            if (mobileInput) mobileInput.value = '';
 
             document.querySelectorAll('.job-checkbox').forEach(box => {
                 box.checked = true;
